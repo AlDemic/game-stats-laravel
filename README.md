@@ -1,59 +1,130 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## 📝 Games statistics project[Laravel rebuild]
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 🧩 Description
 
-## About Laravel
+Laravel-based version of my <a href="https://github.com/AlDemic/game-stats">previous</a> Game Statistics project.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Original project was written in pure PHP without frameworks.
+This version rebuilds the same system using Laravel architecture.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Main goal — demonstrate understanding of framework-based backend development.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+The system is built as internal analytical tool with a centralized entry point via index.php (URL routing + redirection).
 
-## Learning Laravel
+## 🚀 Improvements Compared to PHP Version
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- Laravel routing instead of custom router
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+- MVC architecture
 
-## Laravel Sponsors
+- Blade templating
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+- Eloquent ORM
 
-### Premium Partners
+- FormRequest validation
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- Service layer for business logic
 
-## Contributing
+- Events for logging actions
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+- Feature tests for admin API
 
-## Code of Conduct
+- Storage API for parser files
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+## ⚙️ Technologies
 
-## Security Vulnerabilities
+* Laravel
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+* PHP
 
-## License
+* MySQL
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+* Blade
+
+* Eloquent ORM
+
+* Feature Tests
+
+* REST API
+
+## 🧱 Architecture
+
+Main architecture components:
+
+Request -> Route -> Controller -> Service -> Model(Eloquent) -> Database
+
+Used patterns:
+
+* Service Layer
+
+* Event-based logging
+
+* FormRequest validation
+
+* API Resources
+
+* Feature testing
+
+## 🧩 Features
+
+* Game statistics storage
+
+* Online / income tracking
+
+* JSON import
+
+* External parser integration
+
+* Monthly filtering
+
+* Average calculations
+
+* Dynamic navigation by games
+
+* Admin panel
+
+* Logging system
+
+## 🧪 Testing
+
+Admin API covered with Feature tests.
+
+Examples:
+
+- add record
+
+- delete record
+
+- validation checks
+
+- database assertions
+
+## 🗄 Database
+
+1) Open file .env in root folder and adjust SQL connection (I used MySQL as main db, for tests - sqlite);
+2) Go to root folder by console and start migration: php artisan migrate. This command will create basic tables for laravel and special tables for this project: games, onlines, incomes.
+
+## 📸 Demonstration
+
+![Parser demonstration](screenshots/admin-record-example.gif)
+![Result tests](screenshots/tests-example.jpg)
+
+## 📸 Screenshots
+- Additional screenshots can find in same folder: /screenshots/
+
+## ⚙️ Running the Module(!)
+
+git clone
+cd project
+
+composer install
+
+cp .env.example -> .env
+
+php artisan migrate
+
+php artisan serve
+
+Admin panel is simple. Session is created for 24h. To login use username: "admin" and password: "1212" - without "".
+
+

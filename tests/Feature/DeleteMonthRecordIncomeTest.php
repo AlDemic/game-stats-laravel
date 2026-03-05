@@ -58,7 +58,7 @@ class DeleteMonthRecordIncomeTest extends TestCase
                 ]);
 
         //check db
-        $this->assertSoftDeleted('incomes', $record);
+        $this->assertDatabaseMissing('incomes', $record);
 
         //check event
         Event::assertDispatched(IncomeRecordDeleted::class);

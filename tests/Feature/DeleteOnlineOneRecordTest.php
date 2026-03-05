@@ -57,7 +57,7 @@ class DeleteOnlineOneRecordTest extends TestCase
                 ]);
 
         //check db
-        $this->assertSoftDeleted('onlines', $record);
+        $this->assertDatabaseMissing('onlines', $record);
 
         //check event
         Event::assertDispatched(OnlineRecordDeleted::class);

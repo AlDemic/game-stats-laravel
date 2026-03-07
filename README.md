@@ -106,7 +106,8 @@ Examples:
 
 ## 📸 Demonstration
 
-![Parser demonstration](screenshots/admin-record-example.gif)
+![Admin action result demonstration](screenshots/result-action-example.gif)
+![Parser result demonstration](screenshots/parser-example.gif)
 ![Result tests](screenshots/tests-example.jpg)
 
 ## 📸 Screenshots

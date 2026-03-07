@@ -16,17 +16,20 @@ use App\Http\Resources\GameResource;
 use App\Services\GameStatService;
 use App\Services\GameAdminService;
 
+//MODELS
+use App\Models\Game;
+
 class GameController extends Controller
 {
     //get game by url
-    public function getGameByUrl($url, Request $request, GameStatService $service) {
+    public function getGameByUrl(Game $game, Request $request, GameStatService $service) {
         //get query from url
         $stat = $request->stat;
         $filter = $request->filter;
         $date = $request->date;
 
         //get game and result if exist stat and filter
-        $serviceResult = $service->getStats($url, $stat, $filter, $date);
+        $serviceResult = $service->getStats($game, $stat, $filter, $date);
 
         //call blade page
         return view('game_stats', [
@@ -40,12 +43,12 @@ class GameController extends Controller
 
     //get games list (using for header)
     public function getGamesList(GameAdminService $service) {
-        $gamesList = $service->getGamesList();   
-
+        $gamesList = $service->getGamesList();  
+        
         //send back json
         return response()->json([
             'status' => 'ok',
-            'gamesList' => GameResource::collection($gamesList)
+            'gamesList' => GameResource::collection($gamesList),
         ], 200);
     }
 

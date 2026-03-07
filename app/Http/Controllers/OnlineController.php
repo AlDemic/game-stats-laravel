@@ -24,12 +24,12 @@ class OnlineController extends Controller
         $games = $service->getGamesList();
         
         $view_array = [
-            'add-record-online' => 'admin.add_record_online',
-            'del-record-online' => 'admin.del_record_online',
+            'admin/add-record-online' => 'admin.add_record_online',
+            'admin/del-record-online' => 'admin.del_record_online',
         ];
 
         //take from url address for view
-        $url = substr($request->path(), 6);
+        $url = $request->path();
         return view($view_array[$url], ['games' => $games]);
     }
 

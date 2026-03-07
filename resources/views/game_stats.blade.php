@@ -21,8 +21,8 @@
         </div>
         <div class='main__title-filters'>
             @if(isset($stat))
-                <a href="{{ request()->fullUrlWithQuery(['filter' => 'aver-all', 'date' => null]) }}" class="button">Average all</a>
-                <a href="{{ request()->fullUrlWithQuery(['filter' => 'aver-month']) }}"  class="button">Average monthly</a>
+                <a href="{{ request()->fullUrlWithQuery(['filter' => 'aver-all', 'date' => null]) }}" class="{{ $filter === 'aver-all' ? 'disabled' : '' }}">Average all</a>
+                <a href="{{ request()->fullUrlWithQuery(['filter' => 'aver-month']) }}"  class="{{ $filter === 'aver-month' ? 'disabled' : '' }}">Average monthly</a>
             @else
                 <span>Choose any stat to see filters</span>
             @endif
@@ -32,8 +32,8 @@
         <!--info for online, income, etc-->
         <div class='main__content-stats'>
             @if(isset($game))
-                <a href="?stat=online" class="button">online</a>
-                <a href='?stat=income' class="button">income</a>
+                <a href="?stat=online" class="{{ $stat === 'online' ? 'disabled' : '' }}">online</a>
+                <a href='?stat=income' class="{{ $stat === 'income' ? 'disabled' : '' }}">income</a>
             @endif
         </div>
         <div class='main__content-info'>

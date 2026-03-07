@@ -24,12 +24,12 @@ class IncomeController extends Controller
         $games = $service->getGamesList();
         
         $view_array = [
-            'add-record-income' => 'admin.add_record_income',
-            'del-record-income' => 'admin.del_record_income',
+            'admin/add-record-income' => 'admin.add_record_income',
+            'admin/del-record-income' => 'admin.del_record_income',
         ];
 
         //take from url address for view
-        $url = substr($request->path(), 6);
+        $url = $request->path();
         return view($view_array[$url], ['games' => $games]);
     }
 

@@ -19,6 +19,12 @@ class Game extends Model
         'url'
     ]; 
 
+    //for route route binding(url instead of id)
+    public function getRouteKeyName()
+    {
+        return 'url';
+    }
+
     public function online() {
         return $this->hasMany(Online::class);
     }

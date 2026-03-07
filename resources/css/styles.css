@@ -227,6 +227,16 @@ main a {
     border: 1px solid transparent;
 }
 
+main a.disabled {
+    pointer-events: none;
+    background-color: var(--main-block-btn-bg-hov);
+    color: var(--main-text);
+    border: 1px solid;
+    border-radius: 30px;
+    cursor: pointer;
+    border-color: var(--border-color);
+}
+
 main a:hover {
     background-color: var(--main-block-btn-bg-hov);
     color: var(--main-text);

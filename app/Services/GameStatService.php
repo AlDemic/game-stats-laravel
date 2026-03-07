@@ -9,10 +9,7 @@ use App\Models\Income;
 class GameStatService
 {
     //main class for controller
-    public function getStats(string $url, $stat, $filter, $date) {
-        //get game
-        $game = Game::where('url', $url)->firstOrFail();
-
+    public function getStats(Game $game, $stat, $filter, $date) {
         //call func depends on stat
         switch($filter) {
             case 'aver-all':

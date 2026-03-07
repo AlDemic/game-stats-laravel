@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
+use App\Models\Game;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -19,6 +21,11 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        //
+        //take games from DB for header list
+        View::composer('layout', function($navList) {
+            $gamesList = Game::select('title', 'url', 'pic')->get();
+
+            $navList->with('gamesList', $gamesList);
+        });
     }
 }

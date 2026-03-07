@@ -11,7 +11,7 @@ use App\Http\Middleware\CheckAdmin;
 
 //GET ROUTS
 Route::get('/', fn() => view('index')); //main page
-Route::get('/games/{url}', [GameController::class, 'getGameByUrl']); //game page with stats 
+Route::get('/games/{game}', [GameController::class, 'getGameByUrl']); //game page with stats 
 
 //API BLOCK
 Route::prefix('api')->group(function() {

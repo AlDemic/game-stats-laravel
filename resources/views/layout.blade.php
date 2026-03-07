@@ -9,17 +9,10 @@
 
         <!-- Styles / Scripts -->
         @vite('resources/css/styles.css')
-        @vite('resources/js/header.js')
     </head>
     <body>
         <div class="layout">
-            <header class='header'>
-                <nav class='nav'></nav>
-                <div class='header__title'>
-                    <h1 class='header__title'><a href='/'>Game Stats</a></h1>
-                </div>
-                <div class="logo__pic"></div>
-            </header>
+            @include('header')
             <main class="main">@yield('main')</main>
         </div>
     

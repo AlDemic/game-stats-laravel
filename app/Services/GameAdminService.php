@@ -11,6 +11,7 @@ use App\Events\GameDeleted;
 
 //ADDITIONAL
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Storage;
 
 class GameAdminService
 {
@@ -43,7 +44,14 @@ class GameAdminService
     //del game from db
     public function delGameFromDb($validated) {
         $game = Game::findOrFail($validated['id']);
-        $game->delete();
+        
+        //pic url
+        $game_pic = $game->pic;
+
+        $game->delete(); //delete from db
+        if($game_pic) {
+            Storage::disk('public')->delete($game_pic); //delete pic from storage
+        }
 
         //write log
         event(new GameDeleted($game));

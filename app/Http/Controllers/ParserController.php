@@ -3,25 +3,26 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ParserStartJob;
 use Illuminate\Http\Request;
 use App\Services\ParserService;
 
 class ParserController extends Controller
 {
     //start selected parser
-    public function startParser(ParserService $service, Request $request) {
+    public function startParser(Request $request) {
         //parser from form
         $parserSelected = $request->validate([
             'parser-run' => 'required|string'
         ]);
 
-        //run parser
-        $parserResult = $service->runParser($parserSelected['parser-run']);
-
+        //run parser with queue
+        ParserStartJob::dispatch($parserSelected['parser-run'])->onQueue('parser');
+        
         //send back json answer for user
         return response()->json([
             'status' => 'ok',
-            'msg' => $parserResult
+            'msg' => 'Parser is started!'
         ], 200);
     }
 

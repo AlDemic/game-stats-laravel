@@ -99,7 +99,7 @@ class ParserService
         $this->saveAsJson($dates_stat, 'zzz-activeplayerio');
 
         //answer that is done
-        return 'Parser for ZZZ online from activeplayer.io is done.';
+        return 'ok';
     }
 
     //COMMON FUNC FOR PARSER OPERATION

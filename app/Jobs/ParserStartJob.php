@@ -4,12 +4,21 @@ namespace App\Jobs;
 
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
+use Illuminate\Support\Facades\Log;
 use App\Services\ParserService;
 use App\Models\ParserLog;
 
 class ParserStartJob implements ShouldQueue
 {
     use Queueable;
+
+    //tries
+    public $tries = 2;
+
+    //delay for tries
+    public function backoff() {
+        return [5, 10];
+    }
 
     protected string $parserName;
 
@@ -38,5 +47,10 @@ class ParserStartJob implements ShouldQueue
         $parserLog->update([
             'status' => $parser_status
         ]);
+    }
+
+    //failed job
+    public function failed(\Throwable $e) {
+        Log::error("Job parser is failed {$e->getMessage()}");
     }
 }

@@ -33,7 +33,7 @@ class GameController extends Controller
 
         //call blade page
         return view('game_stats', [
-            'game' => $serviceResult['game'],
+            'game' => new GameResource($serviceResult['game']),
             'stat' => $stat,
             'filter' => $filter,
             'date' => $date,

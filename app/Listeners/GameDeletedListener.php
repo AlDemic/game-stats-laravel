@@ -7,7 +7,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Support\Facades\Log;
 use App\Events\GameDeleted;
 
-class GameDeletedListener
+class GameDeletedListener implements ShouldQueue
 {
     /**
      * Create the event listener.

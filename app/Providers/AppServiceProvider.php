@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
+use Illuminate\Support\Facades\Cache;
 use App\Models\Game;
 
 class AppServiceProvider extends ServiceProvider
@@ -23,8 +24,10 @@ class AppServiceProvider extends ServiceProvider
     {
         //take games from DB for header list
         View::composer('layout', function($navList) {
-            $gamesList = Game::select('title', 'url', 'pic')->get();
-
+            $gamesList = Cache::rememberForever('nav.games', function() {
+                return Game::select('title', 'url', 'pic')->get();
+            });
+            
             $navList->with('gamesList', $gamesList);
         });
     }

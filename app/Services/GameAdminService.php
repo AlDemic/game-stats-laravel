@@ -13,6 +13,8 @@ use App\Events\GameDeleted;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
 
+use Illuminate\Support\Facades\Cache;
+
 class GameAdminService
 {
     //games list for header
@@ -35,6 +37,9 @@ class GameAdminService
             'url' => Str::slug(trim($validated['title']))
         ]);
 
+        //update cache
+        Cache::forget('nav.games');
+
         //write log
         event(new GameAdded($game));
 
@@ -52,6 +57,9 @@ class GameAdminService
         if($game_pic) {
             Storage::disk('public')->delete($game_pic); //delete pic from storage
         }
+
+        //update cache
+        Cache::forget('nav.games');
 
         //write log
         event(new GameDeleted($game));

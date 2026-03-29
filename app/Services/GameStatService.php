@@ -8,6 +8,12 @@ use App\Models\Income;
 
 class GameStatService
 {
+    //models array
+    protected $modelsArray = [
+        'online' => Online::class,
+        'income' => Income::class
+    ];
+
     //main class for controller
     public function getStats(Game $game, $stat, $filter, $date) {
         //call func depends on stat
@@ -27,35 +33,21 @@ class GameStatService
 
     //get average per all month
     protected function getAverAll(Game $game, $stat) {
-            switch($stat) {
-                case 'online':
-                    $result = Online::where('game_id', $game->id)->avg('stat');
-                    break;
-                case 'income':
-                    $result = Income::where('game_id', $game->id)->avg('stat');
-                    break;
-                default:
-                    $result = null;
-            }
-            return $result;           
+        //get model depends on $stat
+        $model = $this->modelsArray[$stat];
+
+        //get result from db
+        return $model::where('game_id', $game->id)->avg('stat');
     }
 
     //get average per month
     protected function getAverMonthly(Game $game, $stat, $date) {
-            if(!$date) return null;
-            [$year, $month] = explode('-', $date);
-            
-            switch($stat) {
-                case 'online':
-                    $result = Online::where('game_id', $game->id)->whereYear('date', $year)->whereMonth('date', $month)->avg('stat');
-                    break;
-                case 'income':
-                    $result = Income::where('game_id', $game->id)->whereYear('date', $year)->whereMonth('date', $month)->avg('stat');
-                    break;
-                default:
-                    $result = null;
-            }
+        if(!$date) return null;
+        [$year, $month] = explode('-', $date);
 
-            return $result;
+        //get model depends on $stat
+        $model = $this->modelsArray[$stat];
+         
+        return $model::where('game_id', $game->id)->whereYear('date', $year)->whereMonth('date', $month)->avg('stat');
     }
 }

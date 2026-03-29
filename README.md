@@ -26,6 +26,10 @@ The system is built as internal analytical tool with a centralized entry point v
 - Service layer for business logic
 
 - Events for logging actions
+  
+- Asynchronous processing using Laravel Queues (database driver)
+  
+- Caching layer using Redis for frequently accessed data
 
 - Feature tests for admin API
 
@@ -46,6 +50,8 @@ The system is built as internal analytical tool with a centralized entry point v
 * Feature Tests
 
 * REST API
+  
+* Redis
 
 ## 🧱 Architecture
 
@@ -58,6 +64,10 @@ Used patterns:
 * Service Layer
 
 * Event-based logging
+
+* Queue-based background processing (Jobs)
+
+* Caching layer (Redis)
 
 * FormRequest validation
 
@@ -84,6 +94,10 @@ Used patterns:
 * Admin panel
 
 * Logging system
+
+* Background parser execution via queue
+
+* Cache invalidation on content updates
 
 ## 🧪 Testing
 
@@ -123,6 +137,12 @@ composer install
 cp .env.example -> .env
 
 php artisan migrate
+
+# Start Redis (required for cache)
+docker run -d --name laravel-redis -p 6379:6379 redis:latest
+
+# Run queue worker (for background jobs)
+php artisan queue:work --queue=parser,default
 
 php artisan serve
 
